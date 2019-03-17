@@ -1,7 +1,21 @@
 -- -----------------------------------------------------
+-- Table `bdpsi`.`DIABETES`
+-- -----------------------------------------------------
+CREATE TABLE  `bdpsi`.`diabetes` (
+  `Id` TINYINT(10) NOT NULL AUTO_INCREMENT,
+  `Nome` VARCHAR(50) NOT NULL,
+  `Tipo` TINYINT(5)  NOT NULL,
+  `Descricao` VARCHAR(50),
+  PRIMARY KEY (`Id`),
+  UNIQUE INDEX `idPessoa_UNIQUE` (`Id` ASC))
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+commit;
+-- -----------------------------------------------------
 -- Table `bdpsi`.`Pessoa`
 -- -----------------------------------------------------
-CREATE TABLE  `bdpsi`.`Pessoa` (
+CREATE TABLE  `bdpsi`.`pessoa` (
   `Id` INT NOT NULL AUTO_INCREMENT,
   `Nome` VARCHAR(50) NOT NULL,
   `Sobrenome` VARCHAR(50) NOT NULL,
@@ -18,7 +32,7 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- -----------------------------------------------------
 -- Table `bdpsi`.`Paciente`
 -- -----------------------------------------------------
-CREATE TABLE  `bdpsi`.`Paciente` (
+CREATE TABLE  `bdpsi`.`paciente` (
   `Id` INT NOT NULL AUTO_INCREMENT,
   `Peso` VARCHAR(45) NOT NULL,
   `Altura` VARCHAR(45) NOT NULL,
@@ -42,7 +56,7 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- -----------------------------------------------------
 -- Table `bdpsi`.`Medico`
 -- -----------------------------------------------------
-CREATE TABLE `bdpsi`.`Medico` (
+CREATE TABLE `bdpsi`.`medico` (
   `Id` INT NOT NULL AUTO_INCREMENT,
   `Cpf` VARCHAR(45) NOT NULL,
   `Crm` VARCHAR(45) NOT NULL,
@@ -57,7 +71,7 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- -----------------------------------------------------
 -- Table `bdpsi`.`Glicemia`
 -- -----------------------------------------------------
-CREATE TABLE `bdpsi`.`Glicemia` (
+CREATE TABLE `bdpsi`.`glicemia` (
   `Id` INT NOT NULL AUTO_INCREMENT,
   `DataMedicao` DATE NOT NULL,
   `HoraMedicao` VARCHAR(30) NOT NULL,
