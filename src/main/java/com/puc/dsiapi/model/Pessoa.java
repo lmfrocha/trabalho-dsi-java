@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -13,6 +15,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.UniqueElements;
+import org.springframework.lang.Nullable;
 
 @Entity
 @Table(name = "pessoa")
@@ -34,7 +37,6 @@ public class Pessoa {
 
 	private String sexo;
 	
-
 	private int telefone;
 	
 	@UniqueElements
@@ -45,12 +47,38 @@ public class Pessoa {
 	
 	private String senha;
 
+	@ManyToOne
+	@JoinColumn(name="paciente_FK", referencedColumnName="id", nullable=true)
+	private Paciente paciente;
+	
+	@ManyToOne
+	@JoinColumn(name="medico_FK", referencedColumnName="id", nullable=true)
+	private Medico medico;
+	
+	
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Pessoa(Long id, @NotNull @Size(min = 3, max = 50) String nome, @Size(min = 3, max = 120) String sobrenome,
+			Date dataNasc, String sexo, int telefone, @UniqueElements String email, @UniqueElements String login,
+			String senha, @Nullable Paciente paciente, @Nullable Medico medico) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.sobrenome = sobrenome;
+		this.dataNasc = dataNasc;
+		this.sexo = sexo;
+		this.telefone = telefone;
+		this.email = email;
+		this.login = login;
+		this.senha = senha;
+		this.paciente = paciente;
+		this.medico = medico;
 	}
 
 	public String getNome() {

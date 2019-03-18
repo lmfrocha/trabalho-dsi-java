@@ -8,35 +8,35 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
 import org.springframework.lang.Nullable;
 
 @Entity
-@Table(name = "paciente")
-public class Paciente {
+@Table(name= "medico")
+public class Medico {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String peso;
-	
-	public Paciente(Long id, String peso, float altura, @Nullable Diabete diabete) {
+	public Medico(Long id, String cpf, String crm, String uf, @Nullable Paciente paciente) {
 		super();
 		this.id = id;
-		this.peso = peso;
-		this.altura = altura;
-		this.diabete = diabete;
+		this.cpf = cpf;
+		this.crm = crm;
+		this.uf = uf;
+		this.paciente = paciente;
 	}
 
-	private float altura;
+	private String cpf;
+	
+	private String crm;
+	
+	private String uf;
 	
 	@ManyToOne
-	@NotFound(action= NotFoundAction.IGNORE)
-	@JoinColumn(name= "Diabete", referencedColumnName="Id")
-	private Diabete diabete;
-	
+	@JoinColumn(name="paciente", referencedColumnName="id")
+	private Paciente paciente;
+
 	public Long getId() {
 		return id;
 	}
@@ -44,31 +44,39 @@ public class Paciente {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	public String getPeso() {
-		return peso;
+
+	public String getCpf() {
+		return cpf;
 	}
 
-	public void setPeso(String peso) {
-		this.peso = peso;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
-	public float getAltura() {
-		return altura;
+	public String getCrm() {
+		return crm;
 	}
 
-	public void setAltura(float altura) {
-		this.altura = altura;
+	public void setCrm(String crm) {
+		this.crm = crm;
 	}
 
-	public Diabete getDiabete() {
-		return diabete;
+	public String getUf() {
+		return uf;
 	}
 
-	public void setDiabete(Diabete diabete) {
-		this.diabete = diabete;
+	public void setUf(String uf) {
+		this.uf = uf;
 	}
-	
+
+	public Paciente getPaciente() {
+		return paciente;
+	}
+
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -85,7 +93,7 @@ public class Paciente {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Paciente other = (Paciente) obj;
+		Medico other = (Medico) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -93,8 +101,11 @@ public class Paciente {
 			return false;
 		return true;
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		return "Medico [id=" + id + ", cpf=" + cpf + ", crm=" + crm + ", uf=" + uf + ", paciente=" + paciente + "]";
+	}
+	
 	
 }

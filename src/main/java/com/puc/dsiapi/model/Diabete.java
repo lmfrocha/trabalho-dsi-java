@@ -16,6 +16,19 @@ public class Diabete {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	public Diabete(Long id, @NotNull String nome, @NotNull Long tipo, @Size(min = 0, max = 300) String descricao) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.tipo = tipo;
+		this.descricao = descricao;
+	}
+	
+	public Diabete(Long id) {
+		super();
+		this.id = id;
+	}
+
 	@NotNull
 	private String nome;
 	
