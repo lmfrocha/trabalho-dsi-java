@@ -44,7 +44,7 @@ public class GlicemiaResource {
 	private ApplicationEventPublisher publisher;
 	
 	@PostMapping //criar
-	public ResponseEntity<Glicemia> criar(@Valid @RequestBody Glicemia glicemia, HttpServletResponse response) { 
+	public ResponseEntity<Glicemia> criar(@RequestBody Glicemia glicemia, HttpServletResponse response) { 
 		Glicemia glicemiaSalva = glicemiaRepository.save(glicemia);
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, glicemiaSalva.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(glicemiaSalva);

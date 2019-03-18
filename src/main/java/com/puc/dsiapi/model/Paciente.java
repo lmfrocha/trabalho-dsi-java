@@ -30,11 +30,15 @@ public class Paciente {
 		this.diabete = diabete;
 	}
 
+	Paciente(){
+		
+	}
+	
 	private float altura;
 	
 	@ManyToOne
 	@NotFound(action= NotFoundAction.IGNORE)
-	@JoinColumn(name= "Diabete", referencedColumnName="Id")
+	@JoinColumn(name= "diabete", referencedColumnName="id")
 	private Diabete diabete;
 	
 	public Long getId() {

@@ -1,5 +1,6 @@
 package com.puc.dsiapi.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +14,7 @@ import javax.validation.constraints.Size;
 public class Diabete {
 
 	@Id
+	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
@@ -24,17 +26,23 @@ public class Diabete {
 		this.descricao = descricao;
 	}
 	
+	Diabete() {
+		
+	}
 	public Diabete(Long id) {
 		super();
 		this.id = id;
 	}
 
+	@Column(name="nome")
 	@NotNull
 	private String nome;
 	
+	@Column(name="tipo")
 	@NotNull
 	private Long tipo;
 	
+	@Column(name="descricao")
 	@Size(min = 0, max = 300)
 	private String descricao;
 

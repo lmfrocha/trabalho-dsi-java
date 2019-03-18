@@ -1,5 +1,6 @@
 package com.puc.dsiapi.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +16,7 @@ import org.springframework.lang.Nullable;
 public class Medico {
 	
 	@Id
+	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
@@ -27,11 +29,21 @@ public class Medico {
 		this.paciente = paciente;
 	}
 
+	Medico(){
+		
+	}
+	
+	@Column(name="cpf")
 	private String cpf;
 	
+	@Column(name="crm")
 	private String crm;
 	
+	@Column(name="uf")
 	private String uf;
+	
+	@Column(name="endereco_consultorio")
+	private String endereco;
 	
 	@ManyToOne
 	@JoinColumn(name="paciente", referencedColumnName="id")
@@ -102,9 +114,28 @@ public class Medico {
 		return true;
 	}
 
+	
+	/**
+	 * @return the endereco
+	 */
+	public String getEndereco() {
+		return endereco;
+	}
+
+	/**
+	 * @param endereco the endereco to set
+	 */
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
-		return "Medico [id=" + id + ", cpf=" + cpf + ", crm=" + crm + ", uf=" + uf + ", paciente=" + paciente + "]";
+		return "Medico [id=" + id + ", cpf=" + cpf + ", crm=" + crm + ", uf=" + uf + ", endereco=" + endereco
+				+ ", paciente=" + paciente + "]";
 	}
 	
 	

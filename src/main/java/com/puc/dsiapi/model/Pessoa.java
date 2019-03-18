@@ -2,6 +2,7 @@ package com.puc.dsiapi.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,37 +23,46 @@ import org.springframework.lang.Nullable;
 public class Pessoa {
 	
 	@Id
+	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(name="nome")
 	@NotNull
 	@Size(min = 3, max = 50)
 	private String nome;
 	
+	@Column(name="sobrenome")
 	@Size(min =3, max = 120)
 	private String sobrenome;
 	
+	@Column(name="data_nasc")
 	@Temporal(TemporalType.DATE)
 	private Date dataNasc;
 
+	@Column(name="sexo")
 	private String sexo;
 	
+	@Column(name="telefone")
 	private int telefone;
 	
+	@Column(name="email")
 	@UniqueElements
 	private String email;
 	
+	@Column(name="login")
 	@UniqueElements
 	private String login;
 	
+	@Column(name="senha")
 	private String senha;
 
 	@ManyToOne
-	@JoinColumn(name="paciente_FK", referencedColumnName="id", nullable=true)
+	@JoinColumn(name="paciente", referencedColumnName="id")
 	private Paciente paciente;
 	
 	@ManyToOne
-	@JoinColumn(name="medico_FK", referencedColumnName="id", nullable=true)
+	@JoinColumn(name="medico", referencedColumnName="id")
 	private Medico medico;
 	
 	
@@ -79,6 +89,10 @@ public class Pessoa {
 		this.senha = senha;
 		this.paciente = paciente;
 		this.medico = medico;
+	}
+	
+	Pessoa(){
+		
 	}
 
 	public String getNome() {

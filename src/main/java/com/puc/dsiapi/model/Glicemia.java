@@ -2,6 +2,7 @@ package com.puc.dsiapi.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +16,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Glicemia {
 
 	@Id
+	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
@@ -26,17 +28,26 @@ public class Glicemia {
 		this.nivelGlicemico = nivelGlicemico;
 		this.tipoGlicemia = tipoGlicemia;
 	}
-
+	
+	Glicemia(){
+		
+	}
+	
+	@Column(name="data_medicao")
 	@DateTimeFormat(pattern= "dd/MM/yyyy")
 	private Date dataMedicao;
-
-	@DateTimeFormat(pattern= "HH:mm")
+	
+	@Column(name="hora_medicao")
+	@DateTimeFormat(pattern= "HH:mm:ss")
 	private Date horaMedicao;
 	
+	@Column(name="nivel_glicemico")
 	private Integer nivelGlicemico;
 	
+	@Column(name="tipo_glicemia")
 	private String tipoGlicemia;
 
+	
 	public Long getId() {
 		return id;
 	}
