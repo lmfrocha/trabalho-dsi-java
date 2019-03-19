@@ -8,15 +8,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.UniqueElements;
-import org.springframework.lang.Nullable;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "pessoa")
@@ -37,8 +36,8 @@ public class Pessoa {
 	private String sobrenome;
 	
 	@Column(name="data_nasc")
-	@Temporal(TemporalType.DATE)
-	private Date dataNasc;
+	@DateTimeFormat(pattern= "dd/MM/yyyy")
+	private java.sql.Date dataNasc;
 
 	@Column(name="sexo")
 	private String sexo;
@@ -59,24 +58,11 @@ public class Pessoa {
 
 	@ManyToOne
 	@JoinColumn(name="paciente", referencedColumnName="id")
-	private Paciente paciente;
+	private TipoPessoa tipo;
 	
-	@ManyToOne
-	@JoinColumn(name="medico", referencedColumnName="id")
-	private Medico medico;
-	
-	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public Pessoa(Long id, @NotNull @Size(min = 3, max = 50) String nome, @Size(min = 3, max = 120) String sobrenome,
-			Date dataNasc, String sexo, int telefone, @UniqueElements String email, @UniqueElements String login,
-			String senha, @Nullable Paciente paciente, @Nullable Medico medico) {
+			java.sql.Date dataNasc, String sexo, int telefone, @UniqueElements String email,
+			@UniqueElements String login, String senha, TipoPessoa tipo) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -87,12 +73,47 @@ public class Pessoa {
 		this.email = email;
 		this.login = login;
 		this.senha = senha;
-		this.paciente = paciente;
-		this.medico = medico;
+		this.tipo = tipo;
+	}
+	
+//	@ManyToOne
+//	@JoinColumn(name="paciente", referencedColumnName="id")
+//	private Paciente paciente;
+//	
+//	@ManyToOne
+//	@JoinColumn(name="medico", referencedColumnName="id")
+//	private Medico medico;
+	
+//	public Pessoa(Long id, @NotNull @Size(min = 3, max = 50) String nome, @Size(min = 3, max = 120) String sobrenome,
+//			java.sql.Date dataNasc, String sexo, int telefone, @UniqueElements String email, @UniqueElements String login,
+//			String senha, @Nullable Paciente paciente, @Nullable Medico medico) {
+//		this.id = id;
+//		this.nome = nome;
+//		this.sobrenome = sobrenome;
+//		this.dataNasc = dataNasc;
+//		this.sexo = sexo;
+//		this.telefone = telefone;
+//		this.email = email;
+//		this.login = login;
+//		this.senha = senha;
+//		this.paciente = paciente;
+//		this.medico = medico;
+//	}
+	
+	public Pessoa(Long id) {
+		this.id = id;
 	}
 	
 	Pessoa(){
 		
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -115,7 +136,7 @@ public class Pessoa {
 		return dataNasc;
 	}
 
-	public void setDataNasc(Date dataNasc) {
+	public void setDataNasc(java.sql.Date dataNasc) {
 		this.dataNasc = dataNasc;
 	}
 
@@ -183,10 +204,23 @@ public class Pessoa {
 			return false;
 		return true;
 	}
-	
+
+	public TipoPessoa getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(TipoPessoa tipo) {
+		this.tipo = tipo;
+	}
+
 	@Override
 	public String toString() {
 		return "Pessoa [id=" + id + ", nome=" + nome + ", sobrenome=" + sobrenome + ", dataNasc=" + dataNasc + ", sexo="
-				+ sexo + ", telefone=" + telefone + ", email=" + email + ", login=" + login + "]";
+				+ sexo + ", telefone=" + telefone + ", email=" + email + ", login=" + login + ", senha=" + senha
+				+ ", tipo=" + tipo + "]";
 	}
+
+	
+	
+	
 }

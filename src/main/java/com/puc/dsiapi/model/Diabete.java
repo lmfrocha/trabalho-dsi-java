@@ -19,7 +19,6 @@ public class Diabete {
 	private Long id;
 	
 	public Diabete(Long id, @NotNull String nome, @NotNull Long tipo, @Size(min = 0, max = 300) String descricao) {
-		super();
 		this.id = id;
 		this.nome = nome;
 		this.tipo = tipo;
@@ -30,7 +29,6 @@ public class Diabete {
 		
 	}
 	public Diabete(Long id) {
-		super();
 		this.id = id;
 	}
 

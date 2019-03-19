@@ -23,13 +23,16 @@ public class Paciente {
 	private String peso;
 	
 	public Paciente(Long id, String peso, float altura, @Nullable Diabete diabete) {
-		super();
 		this.id = id;
 		this.peso = peso;
 		this.altura = altura;
 		this.diabete = diabete;
 	}
 
+	public Paciente (Long id) {
+		this.id=id;
+	}
+	
 	Paciente(){
 		
 	}

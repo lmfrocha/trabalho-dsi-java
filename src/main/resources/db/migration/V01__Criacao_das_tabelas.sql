@@ -1,4 +1,16 @@
 -- -----------------------------------------------------
+-- Table `bdpsi`.`tipo_pessoa`
+-- -----------------------------------------------------
+CREATE TABLE `bdpsi`.`tipo_pessoa`(
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `medico` int(11),
+  `paciente` INT(11),
+  `pessoa` INT(11),
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id` (`id` ASC)
+  )
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- -----------------------------------------------------
 -- Table `bdpsi`.`diabete`
 -- -----------------------------------------------------
 CREATE TABLE `bdpsi`.`diabete`(

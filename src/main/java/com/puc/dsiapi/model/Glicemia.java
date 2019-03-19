@@ -20,13 +20,16 @@ public class Glicemia {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	public Glicemia(Long id, Date dataMedicao, Date horaMedicao, Integer nivelGlicemico, String tipoGlicemia) {
-		super();
+	public Glicemia(Long id, java.sql.Date dataMedicao, java.sql.Date horaMedicao, Integer nivelGlicemico, String tipoGlicemia) {
 		this.id = id;
 		this.dataMedicao = dataMedicao;
 		this.horaMedicao = horaMedicao;
 		this.nivelGlicemico = nivelGlicemico;
 		this.tipoGlicemia = tipoGlicemia;
+	}
+	
+	public Glicemia(Long id) {
+		this.id = id;
 	}
 	
 	Glicemia(){
@@ -35,11 +38,11 @@ public class Glicemia {
 	
 	@Column(name="data_medicao")
 	@DateTimeFormat(pattern= "dd/MM/yyyy")
-	private Date dataMedicao;
+	private java.sql.Date dataMedicao;
 	
 	@Column(name="hora_medicao")
 	@DateTimeFormat(pattern= "HH:mm:ss")
-	private Date horaMedicao;
+	private java.sql.Date horaMedicao;
 	
 	@Column(name="nivel_glicemico")
 	private Integer nivelGlicemico;
@@ -60,7 +63,7 @@ public class Glicemia {
 		return dataMedicao;
 	}
 
-	public void setDataMedicao(Date dataMedicao) {
+	public void setDataMedicao(java.sql.Date dataMedicao) {
 		this.dataMedicao = dataMedicao;
 	}
 
@@ -68,7 +71,7 @@ public class Glicemia {
 		return horaMedicao;
 	}
 
-	public void setHoraMedicao(Date horaMedicao) {
+	public void setHoraMedicao(java.sql.Date horaMedicao) {
 		this.horaMedicao = horaMedicao;
 	}
 

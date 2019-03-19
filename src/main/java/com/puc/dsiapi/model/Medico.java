@@ -21,7 +21,6 @@ public class Medico {
 	private Long id;
 	
 	public Medico(Long id, String cpf, String crm, String uf, @Nullable Paciente paciente) {
-		super();
 		this.id = id;
 		this.cpf = cpf;
 		this.crm = crm;
@@ -29,6 +28,10 @@ public class Medico {
 		this.paciente = paciente;
 	}
 
+	public Medico(Long id){
+		this.id = id;
+	}
+	
 	Medico(){
 		
 	}
